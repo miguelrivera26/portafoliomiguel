@@ -1,0 +1,1394 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio - Miguel Rivera</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0f172a;
+            --secondary: #1e293b;
+            --accent: #6366f1;
+            --accent-light: #818cf8;
+            --text: #e2e8f0;
+            --text-muted: #94a3b8;
+            --bg: #020617;
+            --card: #0f172a;
+            --border: rgba(255,255,255,0.1);
+            --gradient-1: #6366f1;
+            --gradient-2: #8b5cf6;
+            --gradient-3: #ec4899;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 4px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            padding: 0.7rem 0;
+            background: rgba(15, 23, 42, 0.95);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-style: italic;
+            background: linear-gradient(135deg, var(--gradient-1), var(--gradient-3));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--gradient-1), var(--gradient-2));
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding: 6rem 2rem 4rem;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(236, 72, 153, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 50% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 800px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            color: var(--accent-light);
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #fff 0%, #94a3b8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--gradient-1), var(--gradient-3));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+            animation: fadeInUp 0.8s ease 0.4s both;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease 0.6s both;
+        }
+
+        .btn {
+            padding: 0.9rem 2rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
+            color: white;
+            box-shadow: 0 10px 40px rgba(99, 102, 241, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 50px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.05);
+            border-color: var(--accent);
+        }
+
+        /* Floating Elements */
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.4;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .shape-1 {
+            width: 300px;
+            height: 300px;
+            background: var(--gradient-1);
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .shape-2 {
+            width: 400px;
+            height: 400px;
+            background: var(--gradient-2);
+            top: 50%;
+            right: 10%;
+            animation-delay: -5s;
+        }
+
+        .shape-3 {
+            width: 250px;
+            height: 250px;
+            background: var(--gradient-3);
+            bottom: 10%;
+            left: 30%;
+            animation-delay: -10s;
+        }
+
+        /* Sections */
+        section {
+            padding: 6rem 2rem;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-tag {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 50px;
+            font-size: 0.8rem;
+            color: var(--accent-light);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #fff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image-wrapper {
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.4);
+        }
+
+        .about-image-wrapper img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            inset: -10px;
+            background: linear-gradient(135deg, var(--gradient-1), var(--gradient-3));
+            border-radius: 28px;
+            z-index: -1;
+            opacity: 0.5;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .stat-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .stat-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--gradient-1), var(--gradient-3));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+        }
+
+        .about-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .about-content p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        /* Hobbies */
+        .hobbies-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .hobby-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hobby-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gradient-1), var(--gradient-3));
+            transform: scaleX(0);
+            transition: transform 0.4s;
+        }
+
+        .hobby-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .hobby-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent);
+            box-shadow: 0 20px 60px rgba(99, 102, 241, 0.15);
+        }
+
+        .hobby-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 1.5rem;
+            color: var(--accent-light);
+        }
+
+        .hobby-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .hobby-card p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* University Section */
+        .university-section {
+            background: linear-gradient(180deg, var(--bg) 0%, rgba(99, 102, 241, 0.05) 50%, var(--bg) 100%);
+        }
+
+        .university-header {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-bottom: 4rem;
+        }
+
+        .university-logo {
+            width: 120px;
+            height: 120px;
+            background: white;
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--primary);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .university-info h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .university-info p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .info-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .info-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 2.5rem;
+            transition: all 0.4s;
+        }
+
+        .info-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .info-card-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            color: white;
+        }
+
+        .info-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .info-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .programs-list {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .programs-list li {
+            padding: 0.7rem 0;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .programs-list li:last-child {
+            border-bottom: none;
+        }
+
+        .programs-list i {
+            color: var(--accent-light);
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            overflow: hidden;
+            transition: all 0.4s;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+            box-shadow: 0 30px 80px rgba(99, 102, 241, 0.2);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .project-card:hover .project-image {
+            transform: scale(1.05);
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-tag {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 6px;
+            font-size: 0.75rem;
+            color: var(--accent-light);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .project-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .project-content p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent-light);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: gap 0.3s;
+        }
+
+        .project-link:hover {
+            gap: 1rem;
+        }
+
+        .module-divider {
+            text-align: center;
+            margin: 4rem 0;
+            position: relative;
+        }
+
+        .module-divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: var(--border);
+        }
+
+        .module-divider span {
+            background: var(--bg);
+            padding: 0 2rem;
+            position: relative;
+            color: var(--text-muted);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 0.85rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            border-top: 1px solid var(--border);
+            padding: 4rem 2rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-style: italic;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--gradient-1), var(--gradient-3));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-text {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            background: var(--secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 1.1rem;
+        }
+
+        .social-links a:hover {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--border);
+            padding-top: 2rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -30px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .about-grid,
+            .university-header {
+                grid-template-columns: 1fr;
+            }
+
+            .about-image {
+                order: -1;
+            }
+
+            .hobbies-grid,
+            .info-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .about-stats {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .about-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        /* Mobile Menu Overlay */
+        .mobile-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(2, 6, 23, 0.98);
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        .mobile-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .mobile-overlay a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .mobile-overlay .close-btn {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+        /* ===== HEADER DE UNIVERSIDAD ===== */
+.university-header {
+    display: grid;
+    grid-template-columns: 1fr auto;  /* Texto a la izquierda, logo a la derecha */
+    gap: 4rem;
+    align-items: center;
+    margin-bottom: 4rem;
+}
+
+/* ===== LOGO MÁS GRANDE Y A LA DERECHA ===== */
+.university-logo-real {
+    width: 220px;           /* ⬆️ ANTES: 150px */
+    height: 220px;          /* ⬆️ ANTES: 150px */
+    background: white;
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;        /* ⬆️ ANTES: 1rem */
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    margin-left: auto;      /* ⬅️ EMPUJA A LA DERECHA */
+    flex-shrink: 0;         /* No se encoge */
+    transition: transform 0.3s ease;
+}
+
+.university-logo-real:hover {
+    transform: scale(1.05);
+}
+
+.university-logo-real img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* ===== IMÁGENES MÁS GRANDES ===== */
+.card-image {
+    margin-top: 1.5rem;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+}
+
+.card-image img {
+    width: 100%;
+    height: 260px;          /* ⬆️ ANTES: 180px */
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.info-card:hover .card-image img {
+    transform: scale(1.05);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 968px) {
+    .university-header {
+        grid-template-columns: 1fr;  /* Apila en móvil */
+        text-align: center;
+    }
+    
+    .university-logo-real {
+        width: 180px;      /* Un poco más pequeño en móvil */
+        height: 180px;
+        margin: 0 auto;     /* Centrado en móvil */
+        order: -1;          /* Logo arriba del texto en móvil */
+    }
+    
+    .card-image img {
+        height: 200px;      /* Imágenes más pequeñas en móvil */
+    }
+}
+
+
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo">Miguel Rivera</div>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#acerca">Acerca de mí</a></li>
+                <li><a href="#universidad">Univalle Yumbo</a></li>
+                <li><a href="#proyectos">Proyectos</a></li>
+            </ul>
+            <div class="mobile-menu" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-overlay" id="mobileMenu">
+        <div class="close-btn" onclick="toggleMenu()">
+            <i class="fas fa-times"></i>
+        </div>
+        <a href="#inicio" onclick="toggleMenu()">Inicio</a>
+        <a href="#acerca" onclick="toggleMenu()">Acerca de mí</a>
+        <a href="#universidad" onclick="toggleMenu()">Univalle Yumbo</a>
+        <a href="#proyectos" onclick="toggleMenu()">Proyectos</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="hero-bg"></div>
+        <div class="floating-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-badge">
+                <i class="fas fa-code"></i>
+                Desarrollador de Software
+            </div>
+            <h1>Todo viaje tiene un <span>comienzo</span></h1>
+            <p>Qué me importa dónde estoy, a dónde voy y qué carajo voy a hacer, mientras me tenga a mí? Y no hablo de tenerme a mí físicamente, hablo de tener mi esencia, mi humor y mis búsquedas. Porque el día que deje de buscar... estaré muerto.."att gaspi" .</p>
+            <div class="hero-cta">
+                <a href="#proyectos" class="btn btn-primary">
+                    <i class="fas fa-rocket"></i>
+                    Ver Proyectos
+                </a>
+                <a href="#acerca" class="btn btn-secondary">
+                    <i class="fas fa-user"></i>
+                    Conóceme
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="acerca">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">Sobre Mí</span>
+                <h2 class="section-title">¿Quién soy?</h2>
+                <p class="section-subtitle">Conoce un poco más sobre mi historia, mis pasiones y lo que me motiva cada día.</p>
+            </div>
+
+            <div class="about-grid">
+                <div class="about-content reveal">
+                    <h2>Miguel Rivera</h2>
+                    <p>
+                        Mi nombre es Miguel Rivera y tengo una gran pasión por aprender en el mundo del desarrollo de software. A través de este portafolio, espero mostrar no solo mis proyectos, sino también mi evolución como desarrollador.
+                    </p>
+                    <p>
+                        Mi meta es crear soluciones efectivas que no solo cumplan con los requerimientos, sino que también superen las expectativas. Me esfuerzo por aprender y crecer en cada paso que doy en mi carrera profesional.
+                    </p>
+                    <p>
+                        Creo firmemente que la tecnología tiene el poder de transformar vidas y estoy comprometido a ser parte de esa transformación.
+                    </p>
+
+                    <div class="about-stats">
+                        <div class="stat-card">
+                            <div class="stat-number">:3</div>
+                            <div class="stat-label">vive</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">disfruta</div>
+                            <div class="stat-label">cada momento</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number"> 🦎 </div>
+                            <div class="stat-label">esfuerzo</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-image reveal">
+                    <div class="about-image-wrapper">
+                        <img src="images/miguel.jpg" alt="Miguel Rivera">
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-header reveal" style="margin-top: 6rem;">
+                <span class="section-tag">Pasatiempos</span>
+                <h2 class="section-title">¿Cuáles son mis hobbies?</h2>
+                <p class="section-subtitle">Lo que hago cuando no estoy programando.</p>
+            </div>
+
+            <div class="hobbies-grid">
+                <div class="hobby-card reveal">
+                    <div class="hobby-icon">
+                        <i class="fas fa-plane"></i>
+                    </div>
+                    <h3>Viajar</h3>
+                    <p>Conocer nuevos sitios y disfrutar las maravillas del mundo antes de que sea tarde.</p>
+                </div>
+                <div class="hobby-card reveal">
+                    <div class="hobby-icon">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <h3>Música</h3>
+                    <p>Escuchar música es una de mis mayores distracciones y fuente de inspiración.</p>
+                </div>
+                <div class="hobby-card reveal">
+                    <div class="hobby-icon">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <h3>Videojuegos</h3>
+                    <p>Disfrutar de mundos virtuales y desafíos que estimulan la creatividad.</p>
+                </div>
+                <div class="hobby-card reveal">
+                    <div class="hobby-icon">
+                        <i class="fas fa-dumbbell"></i>
+                    </div>
+                    <h3>Gimnasio</h3>
+                    <p>Salirse de todos los problemas cotidianos y mantener un estilo de vida saludable.</p>
+                </div>
+                <div class="hobby-card reveal">
+                    <div class="hobby-icon">
+                        <i class="fas fa-mountain"></i>
+                    </div>
+                    <h3>Naturaleza</h3>
+                    <p>Disfrutar el momento presente y conectar con el entorno natural.</p>
+                </div>
+                <div class="hobby-card reveal">
+                    <div class="hobby-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Compartir</h3>
+                    <p>Pasar tiempo con familiares y amigos cercanos, creando recuerdos inolvidables.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- University Section -->
+    <!-- University Section -->
+<section id="universidad" class="university-section">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="section-tag">Formación Académica</span>
+            <h2 class="section-title">Univalle Sede Yumbo</h2>
+            <p class="section-subtitle">Mi alma mater y lugar donde me estoy formando profesionalmente.</p>
+        </div>
+
+        <!-- Header con logo real de la U -->
+        <div class="university-header reveal">
+            <div class="university-info">
+                <h2>Universidad del Valle</h2>
+                <p>
+                    La Universidad del Valle, sede Yumbo, es una institución pública de educación superior que ofrece formación académica de calidad y oportunidades de desarrollo profesional. En esta sede se promueve el aprendizaje, la investigación y el crecimiento personal de los estudiantes, aportando al desarrollo educativo y social de la región.
+                </p>
+                <p style="margin-top: 1rem;">
+                    Actualmente, allí estudio y me estoy formando profesionalmente, adquiriendo conocimientos y habilidades para mi futuro. 🎓
+                </p>
+            </div>
+            
+            <!-- ⬇️ LOGO REAL DE LA UNIVERSIDAD DEL VALLE -->
+            <div class="university-logo-real">
+                <img src="https://yumbo.univalle.edu.co/images/logoUV_Oficial_Rojo.jpg" alt="Logo Universidad del Valle">
+            </div>
+        </div>
+
+        <!-- Tarjetas con imágenes debajo -->
+        <div class="info-cards">
+            
+            <!-- Historia -->
+            <div class="info-card reveal">
+                <div class="info-card-icon">
+                    <i class="fas fa-history"></i>
+                </div>
+                <h3>Historia</h3>
+                <p>
+                    La Universidad del Valle en su carácter regional le ha apostado al desarrollo de nuestra región y especialmente en el valle del cauca. Hace 35 años se creó el sistema de regionalización y este sistema hoy cuenta con nueve sedes distribuidas en el departamento del Valle del Cauca y norte del Cauca.
+                </p>
+                
+                <!-- ⬇️ IMAGEN DEBAJO DEL TEXTO -->
+                <div class="card-image">
+                    <img src="https://www.univalle.edu.co/images/1er-edificio-sede-yumbo.jpg" alt="Sede Univalle">
+                </div>
+            </div>
+
+            <!-- Misión y Visión -->
+            <div class="info-card reveal">
+                <div class="info-card-icon">
+                    <i class="fas fa-bullseye"></i>
+                </div>
+                <h3>Misión y Visión</h3>
+                <p>
+                    La Universidad del Valle tiene como misión formar en educación superior mediante la generación, transformación y difusión del conocimiento en áreas como ciencias, tecnología, artes y cultura. Busca contribuir al desarrollo de la región y construir una sociedad más justa y democrática.
+                </p>
+                
+                <!-- ⬇️ IMAGEN DEBAJO DEL TEXTO -->
+                <div class="card-image">
+                    <img src="https://i.ytimg.com/vi/dYSEepXnO1M/hqdefault.jpg" alt="Estudiantes Univalle">
+                </div>
+            </div>
+
+            <!-- Programas -->
+            <div class="info-card reveal">
+                <div class="info-card-icon">
+                    <i class="fas fa-book-open"></i>
+                </div>
+                <h3>Programas</h3>
+                <p>La Universidad del Valle sede Yumbo ofrece diferentes programas académicos:</p>
+                <ul class="programs-list">
+                    <li><i class="fas fa-check-circle"></i> Administración de Empresas</li>
+                    <li><i class="fas fa-check-circle"></i> Comercio Exterior</li>
+                    <li><i class="fas fa-check-circle"></i> Tecnología en Electrónica Industrial</li>
+                    <li><i class="fas fa-check-circle"></i> Tecnología en Gestión Logística</li>
+                    <li><i class="fas fa-check-circle"></i> Tecnología en Mantenimiento de Sistemas Electromecánicos</li>
+                    <li><i class="fas fa-check-circle"></i> Tecnología en Análisis y Laboratorio Químico</li>
+                    <li><i class="fas fa-check-circle"></i> Tecnología en Desarrollo de Software</li>
+                </ul>
+                
+                <!-- ⬇️ IMAGEN DEBAJO DEL TEXTO -->
+                <div class="card-image">
+                    <img src="https://90minutos.co/wp-content/uploads/2020/12/aumento-en-porcentajes-de-exencion-y-descuentos-para-la-universidad-del-valle-28-12-2020.jpg" alt="Graduación Univalle">
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+    <!-- Projects Section -->
+    <section id="proyectos">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">Portafolio</span>
+                <h2 class="section-title">Proyectos</h2>
+                <p class="section-subtitle">Aquí encontrarás todos mis trabajos del portafolio. Dale click a cualquier proyecto para verlo en detalle.</p>
+            </div>
+
+            <!-- Módulo 1 -->
+            <div class="module-divider reveal">
+                <span>Módulo 1</span>
+            </div>
+
+            <div class="projects-grid">
+                <div class="project-card reveal">
+                    <img src="https://i.pinimg.com/736x/fe/79/7b/fe797bb8ec781972aee8b340ca5f2fe5.jpg" alt="Emociones" class="project-image">
+                    <div class="project-content">
+                        <span class="project-tag">Psicología</span>
+                        <h3>Las Emociones y Sentimientos</h3>
+                        <p>Las emociones y los sentimientos forman parte de la vida de todas las personas y son importantes para comprender cómo reaccionamos ante diferentes situaciones.</p>
+                        <a href="https://emocionesportafolio.my.canva.site/" class="project-link">
+                            Ver proyecto <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card reveal">
+                    <img src="https://i.pinimg.com/736x/8d/4a/74/8d4a74cd7ac87a81e61803a0e7809415.jpg" alt="Estrés" class="project-image">
+                    <div class="project-content">
+                        <span class="project-tag">Bienestar</span>
+                        <h3>El Estrés</h3>
+                        <p>El estrés está en nuestras vidas cotidianas y es importante aprender a manejarlo para mantener un equilibrio saludable.</p>
+                        <a href="https://emocionesportafolio.my.canva.site/el-estres" class="project-link">
+                            Ver proyecto <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card reveal">
+                    <img src="https://i.pinimg.com/736x/ae/ce/3d/aece3de4c8df6fa391f020bd636b3c7c.jpg" alt="Avicii" class="project-image">
+                    <div class="project-content">
+                        <span class="project-tag">Música</span>
+                        <h3>AVICII</h3>
+                        <p>Un cantante top en su momento con canciones icónicas que se le veía sonriente. Lamentablemente ya no está aquí pero su música suena alrededor del mundo.</p>
+                        <a href="https://emocionesportafolio.my.canva.site/avicci-nights-pptx" class="project-link">
+                            Ver proyecto <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card reveal">
+                    <img src="https://i.pinimg.com/736x/ce/a3/ef/cea3ef81d72cfee9fc836de6b7ab8676.jpg" alt="Tiempo" class="project-image">
+                    <div class="project-content">
+                        <span class="project-tag">Productividad</span>
+                        <h3>El Manejo del Tiempo</h3>
+                        <p>El manejo de tiempo es esencial en nuestras vidas, así que hay que saberlo manejar y administrar eficientemente.</p>
+                        <a href="https://emocionesportafolio.my.canva.site/presentaci-n-gesti-n-de-tiempo-laboral-ilustrada-divertida-morada" class="project-link">
+                            Ver proyecto <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card reveal">
+                    <img src="https://i.pinimg.com/736x/4d/ce/69/4dce69bcaa49dc2e4c144d5cdb494770.jpg" alt="Agenda" class="project-image">
+                    <div class="project-content">
+                        <span class="project-tag">Organización</span>
+                        <h3>Mi Semana</h3>
+                        <p>Aquí encontrarás mi semana: cómo me fue, si cumplí con las expectativas y cosas que tenía que hacer.</p>
+                        <a href="https://canva.link/iapxi5i9c7hbmtc" class="project-link">
+                            Ver proyecto <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Módulo 2 -->
+            <div class="module-divider reveal">
+                <span>Módulo 2</span>
+            </div>
+
+<div class="projects-grid">
+    
+    <!-- Proyecto 1 ( -->
+    <div class="project-card reveal">
+        <img src="https://i.pinimg.com/736x/90/48/8a/90488a76ab507be66f1fe593cd1d16d6.jpg" alt="Recorrido" class="project-image">
+        <div class="project-content">
+            <span class="project-tag">Universidad</span>
+            <h3>Recorrido a la U</h3>
+            <p>Aquí encontrarás el video del recorrido de la universidad, mostrando las instalaciones y el ambiente académico.</p>
+            <a href="https://drive.google.com/file/d/1h54-TB3YLyaLxuZC35fiMrbMeMbgS-JT/view?usp=sharing&t=0.02" class="project-link">
+                Ver proyecto <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- ➕ Proyecto 2 (NUEVO) -->
+    <div class="project-card reveal">
+        <img src="https://i.pinimg.com/736x/02/dc/aa/02dcaa4027cc99fc1a975034629c0d34.jpg" alt="Código" class="project-image">
+        <div class="project-content">
+            <span class="project-tag">Programación</span>
+            <h3>Mi bajo rendimiento academico Web</h3>
+            <p>aqui hicimos una exposicion cuando un estudiantes cae a bajo rendimiento y como ha cambiado a lo largo de los años las normas y politicas .</p>
+            <a href="https://canva.link/4u8nxormqg4bafq" class="project-link">
+                Ver proyecto <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+
+
+</div>
+        <!-- Módulo 3 -->
+            <div class="module-divider reveal">
+                <span>Módulo 3</span>
+            </div>
+
+<div class="projects-grid">
+    
+    <!-- Proyecto 1 ( -->
+    <div class="project-card reveal">
+        <img src="https://i.pinimg.com/736x/bb/f6/84/bbf6847d59114465387a72181b991e37.jpg" alt="Recorrido" class="project-image">
+        <div class="project-content">
+            <span class="project-tag">Universidad</span>
+            <h3>la comunicacion institucional</h3>
+            <p>Aquí encontrarás la carta que hicimos en clase, para aprender como redactar una carta  en nuestra vida profesional</p>
+            <a href="https://canva.link/6ait1wu1xt1y9xk" class="project-link">
+                Ver proyecto <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">Miguel Rivera</div>
+            <p class="footer-text">
+                Desarrollador en formación, apasionado por crear soluciones innovadoras y seguir aprendiendo cada día.
+            </p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p> 2026 Miguel Rivera. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('active');
+        }
+
+        // Scroll reveal animation
+        const revealElements = document.querySelectorAll('.reveal');
+        
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
